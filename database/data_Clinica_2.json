@@ -1,0 +1,18 @@
+{
+    "examenes": [
+
+        {"codigo": "819363", "nombre": "PERFIL HEPATICO"},
+        {"codigo": "815467", "nombre": "INSULINA"},
+        {"codigo": "818513", "nombre": "VITAMINA B12"},
+        {"codigo": "817917", "nombre": "TESTOSTERONA EN SANGRE"},
+        {"codigo": "817992", "nombre": "TIROXINA LIBRE (T4L)"},
+        {"codigo": "819319", "nombre": "PERFIL BIOQUIMICO"},
+        {"codigo": "824590", "nombre": "HEMOGRAMA"},
+        {"codigo": "818514", "nombre": "VITAMINA D:25"},
+        {"codigo": "819385", "nombre": "PERFIL LIPIDICO"},
+        {"codigo": "808989", "nombre": "SANGRE VENOSA, ADULTOS"}
+        
+    ]
+}
+
+

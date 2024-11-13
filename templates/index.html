@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor PDF para clínicas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .card {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="mb-0">Conversor PDF</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="pdfConverterForm" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="sourceClinic" class="form-label">Clínica origen</label>
+                                <select class="form-select" id="sourceClinic" name="sourceClinic" required>
+                                    <option value="">Seleccione la clínica de origen</option>
+                                    <option value="Clinica_1">Clínica 1</option>
+                                    <option value="Clinica_2">Clínica 2</option>
+                                    <option value="Clinica_3">Clínica 3</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="pdfFile" class="form-label">Subir PDF</label>
+                                <input type="file" class="form-control" id="pdfFile" name="pdfFile" accept=".pdf" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="destinationClinic" class="form-label">Clinica destino</label>
+                                <select class="form-select" id="destinationClinic" required>
+                                    <option value="">Seleccione la clinica destino</option>
+                                    <option value="Clinica_1">Clinica 1</option>
+                                    <option value="Clinica_2">Clinica 2</option>
+                                    <option value="Clinica_3">Clinica 3</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Generar PDF</button>
+                        </form>
+                        <div id="results" class="mt-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('pdfConverterForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const formData = new FormData();
+            formData.append('source_clinic', document.getElementById('sourceClinic').value);
+            formData.append('path_PDF', document.getElementById('pdfFile').files[0]);
+            formData.append('destination_clinic', document.getElementById('destinationClinic').value)
+
+            try {
+                const response = await fetch('/procesar_pdf', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const resultContainer = document.getElementById('results');
+                resultContainer.innerHTML = '';  // Limpiar resultados previos
+
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log(data)
+
+                    data.resultados.forEach(item => {
+                        resultContainer.innerHTML += `
+                            <p><strong>Descripción:</strong> ${item.examen_modificado}</p>
+                            <p><strong>Similar:</strong> ${item.resultado || 'No encontrado'}</p>
+                            <hr>
+                        `;
+                    });
+
+                    // Agregar el visor del PDF
+                    if (data.pdf_modificado_path) {
+                        resultContainer.innerHTML += `
+                            <h5>PDF Modificado</h5>
+                            <iframe src="${data.pdf_modificado_path}" width="100%" height="600px" style="border: none;"></iframe>
+                        `;
+                    }
+
+                } else {
+                    const errorData = await response.json();
+                    resultContainer.innerHTML = `<p class="text-danger">${errorData.error}</p>`;
+                }
+            } catch (error) {
+                console.error('Error en el proceso:', error);
+            }
+        });
+    </script>
+</body>
+</html>

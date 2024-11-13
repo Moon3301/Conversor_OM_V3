@@ -1,0 +1,27 @@
+{
+    "examenes": [
+        
+        { "codigo": "301045-00", "nombre": "HEMOGRAMA (VHS)" },
+        { "codigo": "302034-00", "nombre": "PERFIL LIPIDICO" },
+        { "codigo": "302075-00", "nombre": "PERFIL BIOQUIMICO" },
+        { "codigo": "302034-00", "nombre": "PERFIL LIPIDICO BASICO" },
+        { "codigo": "302075-00", "nombre": "PERFIL BIOQUIMICO EXTENDIDO" },
+        { "codigo": "301046-00", "nombre": "HEMOGRAMA SIMPLE" },
+        { "codigo": "302035-00", "nombre": "PERFIL LIPIDICO AVANZADO" },
+        { "codigo": "302076-00", "nombre": "PERFIL BIOQUIMICO COMPLETO" },
+        { "codigo": "301057-00", "nombre": "HEMOGRAMA BASICO" },
+        { "codigo": "302045-00", "nombre": "PERFIL LIPIDICO TOTAL" },
+        { "codigo": "302088-00", "nombre": "PERFIL BIOQUIMICO PARCIAL" },
+        { "codigo": "817917-00", "nombre": "TESTOSTERONA SERICA" },
+        { "codigo": "817992-00", "nombre": "TIROXINA LIBRE (T4)" },
+        { "codigo": "818513-00", "nombre": "VITAMINA B12 EN SANGRE" },
+        { "codigo": "819363-00", "nombre": "PERFIL HEPATICO COMPLETO" },
+        { "codigo": "824590-00", "nombre": "HEMOGRAMA DIFERENCIAL" },
+        { "codigo": "818514-00", "nombre": "VITAMINA D TOTAL" },
+        { "codigo": "819385-00", "nombre": "PERFIL LIPIDICO ESPECIAL" },
+        { "codigo": "808989-00", "nombre": "SANGRE VENOSA ADULTOS" },
+        { "codigo": "818513-00", "nombre": "NIVEL DE VITAMINA B12" }
+        
+    ]
+}
+
